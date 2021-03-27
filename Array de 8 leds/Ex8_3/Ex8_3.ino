@@ -62,6 +62,7 @@ else if (button2Estat == 1)
 for (int j = 0; j < ledNum ; j++)
           {
            digitalWrite(ledPin[j], bitRead(num, j));
+           Serial.print("button2Estat");
           }
            delay(250);  
   }

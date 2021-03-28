@@ -3,6 +3,8 @@ int ledNum=6;
 unsigned long ARon =0;
 int ARtimon=11000;
 int ARtimoff=9000;
+int ARtimon2=1000;
+int ARtimoff2=1000;
 unsigned long AOon=10;
 unsigned long AGon=10;
 unsigned long BRon=0;
@@ -27,12 +29,16 @@ void setup() {
 
 void loop() {
   if (millis()-ARon <= ARtimon){
-    digitalWrite(7,HIGH);
+    digitalWrite(7,HIGH);                                                             // Semafor A vermell 
   }
-  else if (millis()-ARon > ARtimon && millis () - ARon <= (ARtimon + ARtimoff)){
+  else if (millis()- ARon > ARtimon && millis () - ARon <= (ARtimon + ARtimoff)){
     digitalWrite(7,LOW);
   }
-  else if (millis()-(ARtimon+ARtimoff)>0){
+  else if (millis()- ARon > (ARtimon+ARtimoff) && millis () - ARon < (ARtimon + ARtimoff + ARtimon2 + ARtimoff2)){
+    digitalWrite(7,HIGH);
+  }
+  
+  else if (millis()-(ARtimon+ARtimoff+ARtimon2+ARtimoff2)>0){
     ARon=millis();
   }
   

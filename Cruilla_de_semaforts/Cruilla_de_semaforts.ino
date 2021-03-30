@@ -14,7 +14,7 @@ unsigned long TEMPO8=21000;
 unsigned long TEMPOPA=0;
 unsigned long TEMPOPB=0;
 unsigned long TEMPOSEMM=2000;
-unsigned long TEMPOSEM=5000;
+unsigned long TEMPOSEM=7000;
 bool intermitenciaa = true;
 bool intermitenciab = true;
 int bp1 = 17;                             //boto peatons Semafor A
@@ -42,7 +42,64 @@ void setup() {
 
 void loop() {
 
+//*****************************LLogica per actualitzar botons************************************
 
+  if (millis() - Ts1 >= TEMPOSEM && bp1s == 0){
+   
+   Ts1=millis();
+   
+ }
+  if (millis() - Ts2 > TEMPOSEM && bp2s == 0){
+    
+    Ts2=millis();
+  }
+  
+
+//***********************************************************************************************
+ if (millis() - Ts1 < TEMPOSEMM && bp1s == 1){
+  
+  digitalWrite(7,0);
+  digitalWrite(8,intermitencia);
+  digitalWrite(9,0);
+  digitalWrite(13,1);
+  digitalWrite(14,0);
+  
+ }
+ else if (millis() - Ts1 > TEMPOSEMM && millis() < TEMPOSEM && bp2s == 1){
+  
+  digitalWrite(7,1);
+  digitalWrite(8,0);
+  digitalWrite(9,0);
+  digitalWrite(13,0);
+  digitalWrite(14,1);
+  
+ }
+ else if (millis() - Ts1 > TEMPOSEM && bp2s == 1){
+
+  Ts1=millis();
+  
+ }
+ 
+
+  if (millis() - Ts2 < TEMPOSEMM && bp2s == 1){
+    
+    digitalWrite(7,0)
+    digitalWrite(8,intermitenciaa);
+    digitalWrite(9,0);
+    digitalWrite(13,1);
+    digitalWrite(14,0);
+    
+  }
+  else if (millis() - Ts2 > TEMPOSEMM && millis() - Ts2 < TEMPOSEM && bp2s == 1){
+    
+    digitalWrite(7,1);
+    digitalWrite(8,0);
+    digitalWrite(9,0);
+    digitalWrite(13,0);
+    digitalWrite(14,1);
+    
+  }
+  else if (millis()
   
 //*******************************SEMAFOR A*******************************************************
  

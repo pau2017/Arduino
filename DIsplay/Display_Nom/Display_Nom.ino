@@ -30,12 +30,8 @@ void setup() {
     
       LedSequence();
      }
-// TurnOnLedWhenBut1Clicked (ledF);
-//TurnOnLed(ledA,ButtonClicked (But1)); 
-//  digitalWrite(ledB,ButtonClicked (But1) ? 1 : 0 );
-//  digitalWrite(ledC, 0);
-//  TurnOnLed(ledD, false);
-      
+     
+
     
    
 }
@@ -108,3 +104,10 @@ void TurnOnLed (int led, bool on){
 bool ButtonClicked (int button){
   return digitalRead (button)== 1 ;
 }
+
+// TurnOnLedWhenBut1Clicked (ledF);
+//TurnOnLed(ledA,ButtonClicked (But1)); 
+//  digitalWrite(ledB,ButtonClicked (But1) ? 1 : 0 );
+//  digitalWrite(ledC, 0);
+//  TurnOnLed(ledD, false);
+      

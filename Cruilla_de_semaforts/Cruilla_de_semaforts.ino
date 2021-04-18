@@ -59,7 +59,7 @@ void loop() {
  if (millis() - Ts1 < TEMPOSEMM && bp1s == 1){
   
   digitalWrite(7,0);
-  digitalWrite(8,intermitencia);
+  digitalWrite(8,intermitenciaa);
   digitalWrite(9,0);
   digitalWrite(13,1);
   digitalWrite(14,0);

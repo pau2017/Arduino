@@ -2,5 +2,5 @@
     "port": "COM7",
     "configuration": "cpu=atmega328",
     "board": "arduino:avr:nano",
-    "sketch": "Comptador_ciclic__1_apretant_boto.ino"
+    "sketch": "001_Fade_led\\001_Fade_led.ino"
 }

@@ -96,9 +96,7 @@ void TurnOnAllLeds(bool on)
 // metodes suport reutilitzables wey, no mames
 
 void TurnOnLed (int led, bool on){
-  if (led >= 0){
     digitalWrite(led, on ? 1 : 0);
-  }
   
 }
 bool ButtonClicked (int button){

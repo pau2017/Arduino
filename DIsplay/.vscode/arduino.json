@@ -1,0 +1,7 @@
+{
+    "port": "COM3",
+    "configuration": "cpu=atmega2560",
+    "board": "arduino:avr:mega",
+    "sketch": "Comptador_ciclic__1_apretant_boto\\Comptador_ciclic__1_apretant_boto.ino",
+    "programmer": "arduino:arduinoasispatmega32u4"
+}

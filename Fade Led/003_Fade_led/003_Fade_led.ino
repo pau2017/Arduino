@@ -1,222 +1,324 @@
+/**********************************************************************************
+**                                 Fade LEDs                                     **
+**********************************************************************************/
+//********** Includes *************************************************************
+//********** Variables ************************************************************
+const int led0 = 3;          // donar nom al pin 3 de l’Arduino
+const int led1 = 5;          // donar nom al pin 5 de l’Arduino
+const int led2 = 6;          // donar nom al pin 6 de l’Arduino
+const int led3 = 9;          // donar nom al pin 9 de l’Arduino
+const int led4 = 10;         // donar nom al pin 10 de l’Arduino
+const int led5 = 11;         // donar nom al pin 11 de l’Arduino
+const int but1 = 7 ;
+int velocitat = 100;         // velocitat de l'acció en ms
 
-//int LedPin [] {7,8,9,10,11,12,13};
-//int lednum = 7;
-const int ledA = 7;
-const int ledB = 8;
-const int ledC = 9;
-const int ledD = 10;
-const int ledE = 11;
-const int ledF = 12;
-const int ledG = 13;
-const int But1 = 2;
-int numPosition = 0;
-bool started = false;
 
+//********** Setup ****************************************************************
 void setup()
 {
-    Serial.begin(9600);
-    pinMode(ledA, OUTPUT); // definir el pin 5 com una sortida
-    pinMode(ledB, OUTPUT); // definir el pin 6 com una sortida
-    pinMode(ledC, OUTPUT); // definir el pin 7 com una sortida
-    pinMode(ledD, OUTPUT); // definir el pin 8 com una sortida
-    pinMode(ledE, OUTPUT); // definir el pin 9 com una sortida
-    pinMode(ledF, OUTPUT); // definir el pin 10 com una sortida
-    pinMode(ledG, OUTPUT); // definir el pin 11 com una sortida
-    pinMode(But1, INPUT);
+  pinMode(led0, OUTPUT);     // definir el pin 3 com una sortida
+  pinMode(led1, OUTPUT);     // definir el pin 5 com una sortida
+  pinMode(led2, OUTPUT);     // definir el pin 6 com una sortida
+  pinMode(led3, OUTPUT);     // definir el pin 9 com una sortida
+  pinMode(led4, OUTPUT);     // definir el pin 10 com una sortida
+  pinMode(led5, OUTPUT);     // definir el pin 11 com una sortida
+  pinMode(but1, INPUT);
 }
 
+//********** Loop *****************************************************************
 void loop()
 {
-    if (ButtonClicked(But1))
-    {
-        LedSequence();
-    }
+  if (ButtonClicked(but1))
+  {
+  Sequencia1();
+  delay (velocitat);
+  
+  Sequencia2();
+  delay (velocitat);
+  
+  Sequencia3();
+  delay (velocitat);
+  
+  Sequencia4();
+  delay (velocitat);
+  
+  Sequencia5();
+  delay (velocitat);
+  
+  Sequencia6();
+  delay (velocitat);
+  
+  Sequencia7();
+  delay (velocitat);
+  
+  Sequencia8();
+  delay (velocitat);
+  
+  Sequencia9();
+  delay (velocitat*2);
+  
+  Sequencia10();
+  delay (velocitat);
+  
+  Sequencia11();
+  delay (velocitat);
+  
+  Sequencia12();
+  delay (velocitat);
+  
+  Sequencia13();
+  delay (velocitat);
+  
+  Sequencia14();
+  delay (velocitat);
+  
+  Sequencia15();
+  delay (velocitat);
+  
+  Sequencia16();
+  delay (velocitat);
+  
+  Sequencia17();
+  delay (velocitat);
+  
+  Sequencia9();
+  delay (velocitat*2);
+  }
+  else if(ButtonClicked(!but1))
+  {
+    ex1();
+  }
 }
 
-void TurnOnLedWhenBut1Clicked(int led)
+void Sequencia1()
 {
-    TurnOnLed(led, ButtonClicked(But1));
+   
+  analogWrite(led0, 255);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+  
 }
-
-void ShowLeds(int on[], int off[])
+void Sequencia2()
 {
-    for (int i = 0; i < sizeof(on); i++)
-    {        
-        Serial.print(on[i] + " - " + i);
-        TurnOnLed(on[i], true);
-    }
-    
-    for (int i = 0; i < sizeof(off); i++)
-    {        
-        Serial.print(off[i] + " - " + i);
-        TurnOnLed(off[i], false);
-    }    
-}
 
-void LedSequence()
+  analogWrite(led0, 125);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 255);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+  
+}
+void Sequencia3()
 {
-    if (!started) // o (started == false)
-    {
-        started = true;
-        int delayTime = 500;
-
-        if (numPosition == 0)
-        {
-            // int on[] = { ledB, ledC, ledD, ledE, ledF, ledB, ledG };
-            // int off[] = { ledA };
-            // ShowLeds(on, off);
-
-            TurnOnLed(ledA, false); //0
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, true);
-            TurnOnLed(ledD, true);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, true);
-            delay(delayTime);
-        }
-        else if (numPosition == 1)
-        {
-            // int on[] = { ledB, ledC };
-            // int off[] = { ledA, ledD, ledE, ledF, ledB, ledG };
-            // ShowLeds(on, off);
-
-            TurnOnLed(ledA, false); //1
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, true);
-            TurnOnLed(ledD, false);
-            TurnOnLed(ledE, false);
-            TurnOnLed(ledF, false);
-            TurnOnLed(ledG, false);
-            delay(delayTime);
-        }
-        else if (numPosition == 2)
-        {
-            TurnOnLed(ledA, true); //2
-            TurnOnLed(ledB, false);
-            TurnOnLed(ledC, true);
-            TurnOnLed(ledD, true);
-            TurnOnLed(ledE, false);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, true);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 3)
-        {
-            TurnOnLed(ledA, true); //3
-            TurnOnLed(ledB, false);
-            TurnOnLed(ledC, false);
-            TurnOnLed(ledD, true);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, true);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 4)
-        {
-            TurnOnLed(ledA, true); //4
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, false);
-            TurnOnLed(ledD, false);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, false);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 5)
-        {
-            TurnOnLed(ledA, true); //5
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, false);
-            TurnOnLed(ledD, true);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, false);
-            TurnOnLed(ledG, true);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 6)
-        {
-            TurnOnLed(ledA, true); //6
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, true);
-            TurnOnLed(ledD, true);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, false);
-            TurnOnLed(ledG, false);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 7)
-        {
-            TurnOnLed(ledA, false); //7
-            TurnOnLed(ledB, false);
-            TurnOnLed(ledC, false);
-            TurnOnLed(ledD, false);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, true);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 8)
-        {
-            TurnOnLed(ledA, true); //8
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, true);
-            TurnOnLed(ledD, true);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, true);
-
-            delay(delayTime);
-        }
-        else if (numPosition == 9)
-        {
-            TurnOnLed(ledA, true);
-            TurnOnLed(ledB, true);
-            TurnOnLed(ledC, false);
-            TurnOnLed(ledD, false);
-            TurnOnLed(ledE, true);
-            TurnOnLed(ledF, true);
-            TurnOnLed(ledG, true);
-
-            delay(delayTime);
-        }
-        started = false;
-        numPosition = (numPosition + 1) % 10;
-        TurnOnAllLeds(false);
-    }
+  analogWrite(led0, 60);    // posar PWM del pin 3 a 255
+  analogWrite(led1, 125);    // posar PWM del pin 5 a 255
+  analogWrite(led2, 255);    // posar PWM del pin 6 a 255
+  analogWrite(led3, 0);    // posar PWM del pin 9 a 255
+  analogWrite(led4, 0);    // posar PWM del pin 10 a 255
+  analogWrite(led5, 0);    // posar PWM del pin 11 a 255
+   
 }
-
-void TurnOnAllLeds(bool on)
+void Sequencia4()
 {
-    TurnOnLed(ledA, on);
-    TurnOnLed(ledB, on);
-    TurnOnLed(ledC, on);
-    TurnOnLed(ledD, on);
-    TurnOnLed(ledE, on);
-    TurnOnLed(ledF, on);
-    TurnOnLed(ledG, on);
+  analogWrite(led0, 0);    // posar PWM del pin 3 a 125
+  analogWrite(led1, 60);    // posar PWM del pin 5 a 125
+  analogWrite(led2, 125);    // posar PWM del pin 6 a 125
+  analogWrite(led3, 255);    // posar PWM del pin 9 a 125
+  analogWrite(led4, 0);    // posar PWM del pin 10 a 125
+  analogWrite(led5, 0);    // posar PWM del pin 11 a 125
 }
-
-// metodes suport reutilitzables wey, no mames
-
-void TurnOnLed(int led, bool on)
+void Sequencia5()
 {
-    digitalWrite(led, on ? 1 : 0);
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 60);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 125);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 255);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
 }
-
-bool ButtonClicked(int button)
+void Sequencia6()
 {
-    return digitalRead(button) == 1;
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 60);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 125);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 255);     // posar PWM del pin 11 a 60
+}
+void Sequencia7()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 60);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 125);     // posar PWM del pin 11 a 60
+}
+void Sequencia8()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 60);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia9()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia10()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 255);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia11()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 255);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 125);     // posar PWM del pin 11 a 60
+
 }
 
-// TurnOnLedWhenBut1Clicked (ledF);
-//TurnOnLed(ledA,ButtonClicked (But1));
-//  digitalWrite(ledB,ButtonClicked (But1) ? 1 : 0 );
-//  digitalWrite(ledC, 0);
-//  TurnOnLed(ledD, false);
+void Sequencia12()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 255);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 125);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 60);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia13()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 255);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 125);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 60);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+
+}
+
+void Sequencia14()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 255);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 125);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 60);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia15()
+{
+  analogWrite(led0, 255);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 125);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 60);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia16()
+{
+  analogWrite(led0, 125);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 60);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+
+}
+void Sequencia17()
+{
+  analogWrite(led0, 60);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 60
+
+}
+void ex1()
+{
+  analogWrite(led0, 0);     // posar PWM del pin 3 a 0
+  analogWrite(led1, 0);     // posar PWM del pin 5 a 0
+  analogWrite(led2, 0);     // posar PWM del pin 6 a 0
+  analogWrite(led3, 0);     // posar PWM del pin 9 a 0
+  analogWrite(led4, 0);     // posar PWM del pin 10 a 0
+  analogWrite(led5, 0);     // posar PWM del pin 11 a 0
+  
+  delay(velocitat);          // es queden leds velocitat ms en aquest estat
+
+  analogWrite(led0, 60);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 60);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 60);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 60);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 60);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 60);     // posar PWM del pin 11 a 60
+  
+  delay(velocitat);          // es queden leds velocitat ms en aquest estat
+  
+  analogWrite(led0, 125);    // posar PWM del pin 3 a 125
+  analogWrite(led1, 125);    // posar PWM del pin 5 a 125
+  analogWrite(led2, 125);    // posar PWM del pin 6 a 125
+  analogWrite(led3, 125);    // posar PWM del pin 9 a 125
+  analogWrite(led4, 125);    // posar PWM del pin 10 a 125
+  analogWrite(led5, 125);    // posar PWM del pin 11 a 125
+  
+  delay(velocitat);           // es queden leds velocitat ms en aquest estat
+  
+  analogWrite(led0, 255);    // posar PWM del pin 3 a 255
+  analogWrite(led1, 255);    // posar PWM del pin 5 a 255
+  analogWrite(led2, 255);    // posar PWM del pin 6 a 255
+  analogWrite(led3, 255);    // posar PWM del pin 9 a 255
+  analogWrite(led4, 255);    // posar PWM del pin 10 a 255
+  analogWrite(led5, 255);    // posar PWM del pin 11 a 255
+   
+  delay(velocitat);           // es queden leds velocitat ms en aquest estat
+  
+  analogWrite(led0, 125);    // posar PWM del pin 3 a 125
+  analogWrite(led1, 125);    // posar PWM del pin 5 a 125
+  analogWrite(led2, 125);    // posar PWM del pin 6 a 125
+  analogWrite(led3, 125);    // posar PWM del pin 9 a 125
+  analogWrite(led4, 125);    // posar PWM del pin 10 a 125
+  analogWrite(led5, 125);    // posar PWM del pin 11 a 125
+  
+  delay(velocitat);           // es queden leds velocitat ms en aquest estat
+
+  analogWrite(led0, 60);     // posar PWM del pin 3 a 60
+  analogWrite(led1, 60);     // posar PWM del pin 5 a 60
+  analogWrite(led2, 60);     // posar PWM del pin 6 a 60
+  analogWrite(led3, 60);     // posar PWM del pin 9 a 60
+  analogWrite(led4, 60);     // posar PWM del pin 10 a 60
+  analogWrite(led5, 60);     // posar PWM del pin 11 a 60
+  
+  delay(velocitat);          // es queden leds velocitat ms en aquest estat
+}
+bool ButtonClicked(int but)
+{
+    return digitalRead(but) == 1;
+}
+
+//********** Funcions **********************************************************

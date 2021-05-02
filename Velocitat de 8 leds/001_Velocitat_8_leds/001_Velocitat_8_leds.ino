@@ -14,7 +14,7 @@ const int led4 = 9;          // donar nom al pin 9 de l’Arduino
 const int led5 = 10;         // donar nom al pin 10 de l’Arduino
 const int led6 = 11;         // donar nom al pin 11 de l’Arduino
 const int led7 = 12;         // donar nom al pin 12 de l’Arduino
-const int pot0 = A7;         // donar nom al pin A0 de l’Arduino
+const int pot0 = A0;         // donar nom al pin A0 de l’Arduino
 
 int velocitat = 20;          // velocitat de l'acció en ms
 int valPot0;                 // guardar valor del potenciometre

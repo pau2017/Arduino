@@ -29,7 +29,8 @@ void setup()
   pinMode(led4, OUTPUT);     // definir el pin 9 com una sortida
   pinMode(led5, OUTPUT);     // definir el pin 10 com una sortida
   pinMode(led6, OUTPUT);     // definir el pin 11 com una sortida
-  pinMode(led7, OUTPUT);     // definir el pin 12 com una sortida
+  pinMode(led7, OUTPUT);
+  pinMode(pot0, INPUT);// definir el pin 12 com una sortida
   Serial.begin(9600);
 }
 

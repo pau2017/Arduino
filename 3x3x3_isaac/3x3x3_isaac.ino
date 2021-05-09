@@ -1,19 +1,19 @@
-#define ARRAY_SIZE(array) ((sizeof(array))/(sizeof(array[0])))
+//#define ARRAY_SIZE(array) ((sizeof(array))/(sizeof(int)))
 
-int ledWait = 100;
+int ledWait = 150;
 int loopWait = 1;
-float trs[] = {11, 12, 13};
-float leds[] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+byte trs[] = {11, 12, 13};
+byte leds[] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 void setup() 
 {
-    for (int i = 0; i < ARRAY_SIZE(trs); i ++ )
+    for (int i = 0; i < sizeof(trs); i ++ )
     {
         pinMode(trs[i], OUTPUT);
         digitalWrite(trs[i], LOW);
     }
 
-    for (int i = 0; i < ARRAY_SIZE(leds); i ++ )
+    for (int i = 0; i < sizeof(leds); i ++ )
     {
         pinMode(leds[i], OUTPUT);
         digitalWrite(leds[i], LOW);
@@ -22,10 +22,10 @@ void setup()
 
 void loop()
 {
-    for (int j = 0; j < ARRAY_SIZE(trs); j ++ )
+    for (int j = 0; j < sizeof(trs); j ++ )
     {
         digitalWrite (trs[j], HIGH);
-        for (int i = 0; i < ARRAY_SIZE(leds); i ++ )
+        for (int i = 0; i < sizeof(leds); i ++ )
         {
             digitalWrite(leds[i], HIGH);
             delay(ledWait);

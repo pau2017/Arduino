@@ -5,6 +5,7 @@
 
 const int trigPin = 9;
 const int echoPin = 10;
+const int boozer = 11;
 long tim;
 int distance;
 int lastdistance;
@@ -17,7 +18,7 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-
+  pinMode(boozer, OUTPUT);
   Serial.begin(9600);
   lcd.init();
   lcd.backlight();
@@ -38,16 +39,25 @@ void loop() {
   Serial.println(distance);       // Per veure resultats al monitor i identificar problemes.
 
   if(distance != lastdistance)   // per evitar repeticions de numeros en pantalla i nomes s'executi quan canviin els valors.
-  {
+    {
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("Objecte a; "); 
     lcd.print(distance);
     lcd.print(" cm");
     lastdistance = distance;
-  }
-
-
+    }
+    
+  if(distance < 10)
+    {
+      digitalWrite(boozer, HIGH);
+    }
+    
+  else
+    {
+      digitalWrite(boozer, LOW);
+    }
+    
   delay (300);
   
 }
